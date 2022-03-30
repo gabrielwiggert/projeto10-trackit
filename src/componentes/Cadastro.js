@@ -3,30 +3,28 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 
-import UserContext from "./UserContext";
 import logotipo from "./../assets/imgs/logotipo.png";
 
 export default function Login () {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
-    const { token, setToken } = useContext(UserContext);
-    const navigate = useNavigate();
+    const [nome, setNome] = useState("");
+    const [foto, setFoto] = useState("");
 
 	function fazerLogin (event) {
 		event.preventDefault();
 
-		const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {
-			email: email,
-			password: senha
-		});
+		const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {
+            email: email,
+            name: nome,
+            image: foto,
+            password: senha
+        });
 
         requisicao.then((response) => {
-            setToken(response.data.token);
             console.log(response.data);
             alert("deu certo!");
-            navigate("/habitos");
         });
 
         requisicao.catch((err) => {
@@ -44,10 +42,12 @@ export default function Login () {
             <form onSubmit={fazerLogin}>
                 <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required />
                 <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required />
-                <button type="submit">Entrar</button>
+                <input type="text" placeholder="nome" value={nome} onChange={e => setNome(e.target.value)} required />
+                <input type="url" placeholder="foto" value={foto} onChange={e => setFoto(e.target.value)} required />
+                <button type="submit">Cadastrar</button>
             </form>
-            <Link to="/cadastro">
-                <h1>Não tem uma conta? Cadastre-se!</h1>
+            <Link to="/">
+                <h1>Já tem uma conta? Faça login!</h1>
             </Link>
         </>
     );
