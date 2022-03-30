@@ -7,10 +7,10 @@ import Habitos from "./Habitos";
 import UserContext from "./UserContext";
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [userData, setUserData] = useState([null, null]);
   
   return (
-    <UserContext.Provider value={{token, setToken}}>
+    <UserContext.Provider value={{userData, setUserData}}>
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Login />} />

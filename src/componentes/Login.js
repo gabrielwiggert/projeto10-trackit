@@ -11,7 +11,7 @@ import logotipo from "./../assets/imgs/logotipo.png";
 export default function Login () {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
-    const { token, setToken } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const navigate = useNavigate();
 
 	function fazerLogin (event) {
@@ -23,7 +23,7 @@ export default function Login () {
 		});
 
         requisicao.then((response) => {
-            setToken(response.data.token);
+            setUserData([response.data.token, response.data.image]);
             console.log(response.data);
             alert("deu certo!");
             navigate("/habitos");
