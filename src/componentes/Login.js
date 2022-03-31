@@ -17,10 +17,11 @@ export default function Login () {
 	function fazerLogin (event) {
 		event.preventDefault();
 
-		const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {
-			email: email,
-			password: senha
-		});
+        const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", {
+            email: email,
+            password: senha
+        });
+
 
         requisicao.then((response) => {
             setUserData([response.data.token, response.data.image]);

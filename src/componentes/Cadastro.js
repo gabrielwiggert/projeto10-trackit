@@ -14,13 +14,12 @@ export default function Login () {
 
 	function fazerLogin (event) {
 		event.preventDefault();
-
-		const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {
-            email: email,
-            name: nome,
-            image: foto,
-            password: senha
-        });
+            const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {
+                email: email,
+                name: nome,
+                image: foto,
+                password: senha
+            });
 
         requisicao.then((response) => {
             console.log(response.data);
