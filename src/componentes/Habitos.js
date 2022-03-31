@@ -20,6 +20,7 @@ function montarCreateHabit(newHabit) {
 
 export default function Habitos() {
     const { userData, setUserData } = useContext(UserContext);
+    const { newHabit, setNewHabit } = useContext(UserContext);
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
@@ -38,28 +39,30 @@ export default function Habitos() {
         });
     }, []);
 
-
-    const [newHabit, setNewHabit] = useState(null);
-
     return (
-        <>
-        <Header />
-        <MeusHabitos>
-            <AddHabit>
-                <SubHeader>
-                    <h1>Meus hábitos</h1>
-                    <button onClick={() => {setNewHabit("enabled")}}>
-                        +
-                    </button>
-                </SubHeader>
-                
-                {montarCreateHabit(newHabit)}
-            </AddHabit>
-            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-        </MeusHabitos>
-        </>
+        <FullScreen>
+            <Header />
+            <MeusHabitos>
+                <AddHabit>
+                    <SubHeader>
+                        <h1>Meus hábitos</h1>
+                        <button onClick={() => {setNewHabit("enabled")}}>
+                            +
+                        </button>
+                    </SubHeader>
+                    
+                    {montarCreateHabit(newHabit)}
+                </AddHabit>
+                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+            </MeusHabitos>
+        </FullScreen>
     );
 }
+
+const FullScreen = styled.div`
+    height: 100vh;
+    background-color: #DBDBDB;
+`;
 
 const SubHeader = styled.div`
     display: flex;
