@@ -41,14 +41,21 @@ export default function Login () {
             <img src={logotipo} />
             </Logo>
 
-            <form onSubmit={fazerLogin}>
-                <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required />
-                <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required />
-                <button type="submit">Entrar</button>
-            </form>
-            <Link to="/cadastro">
-                <h1>Não tem uma conta? Cadastre-se!</h1>
-            </Link>
+            <Form>
+                <form onSubmit={fazerLogin}>
+                    <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required />
+                    <br/>
+                    <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required />
+                    <br/>
+                    <button type="submit">Entrar</button>
+                </form>
+            </Form>
+
+            <Cadastro>
+                <Link to="/cadastro">
+                    <h1>Não tem uma conta? Cadastre-se!</h1>
+                </Link>
+            </Cadastro>
         </>
     );
 }
@@ -59,4 +66,59 @@ const Logo = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 68px;
+    margin-bottom: 30px;
+`;
+
+const Cadastro = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a:link {
+        text-decoration: none;
+        text-decoration: black;
+    }
+
+    h1 {
+        color: #52B6FF;
+        text-decoration: underline;
+    }
+`;
+
+const Form = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        border-width: 1px;
+        border-color: #D4D4D4;
+        background-color: white;
+        border-radius: 5px;
+        border: 1px solid #D5D5D5;
+        width: 80vw;
+        height: 45px;
+        margin-bottom: 6px;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+
+    input::placeholder {
+        padding-left: 11px;
+        font-size: 20px;
+        color: #DBDBDB;
+    }
+
+    button {
+        border-style: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        width: 80vw;
+        height: 45px;
+        background-color: #52B6FF;
+        color: white;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: 21px;
+    }
 `;
