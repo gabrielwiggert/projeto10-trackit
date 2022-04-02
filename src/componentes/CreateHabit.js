@@ -8,7 +8,13 @@ import UserContext from "./UserContext";
 export default function CreateHabit() {
     const { newHabit, setNewHabit } = useContext(UserContext);
     const { days, setDays } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const [habit, setHabit] = useState("");
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData[0]}`
+        }
+    }
     console.log(days);
 
     return (
@@ -49,7 +55,7 @@ export default function CreateHabit() {
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
             name: habit,
             days: days
-        });
+        }, config);
 
     requisicao.then((response) => {
         console.log(response.data);
@@ -59,6 +65,8 @@ export default function CreateHabit() {
         console.log(err);
         alert(err);
     });
+
+    setNewHabit(null);
     }
 }
 
