@@ -22,15 +22,23 @@ function montarCreateHabit(newHabit) {
 export default function Habitos() {
     const { userData, setUserData } = useContext(UserContext);
     const { newHabit, setNewHabit } = useContext(UserContext);
+    const { habits, setHabits } = useContext(UserContext);
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
         }
     }
+
+    const [temHabito, setTemHabito] = useState(false);
     useEffect(() => {
         const requisicao = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         requisicao.then((response) => {
             console.log(response.data);
+
+            if ((response.data).length != 0) {
+                setHabits(response.data);
+                setTemHabito(true);
+            }
         });
     
         requisicao.catch((err) => {
@@ -53,11 +61,25 @@ export default function Habitos() {
                     
                     {montarCreateHabit(newHabit)}
                 </AddHabit>
-                <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                {temHabito ? renderHabits() : noHabitRender()}
             </MeusHabitos>
             <Footer />
         </FullScreen>
     );
+
+    function noHabitRender() {
+        return(
+            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+        );
+    }
+
+    function renderHabits() {
+        return(
+            <>
+                {habits.map(habit => <Habito key={habit.id}><h1>{habit.name}</h1></Habito>)}
+            </>
+            );
+    }
 }
 
 const FullScreen = styled.div`
@@ -65,12 +87,13 @@ const FullScreen = styled.div`
     background-color: #DBDBDB;
 `;
 
+const Habito = styled.div`
+`;
+
 const SubHeader = styled.div`
     display: flex;
     justify-content: space-between;
-`;
 
-const AddHabit = styled.div`
     button {
         width: 40px;
         height: 35px;
@@ -81,6 +104,10 @@ const AddHabit = styled.div`
         border: none;
         border-radius: 4.63636px;
     }
+`;
+
+const AddHabit = styled.div`
+
 `;
 
 const MeusHabitos = styled.div`

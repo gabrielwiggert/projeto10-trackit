@@ -128,4 +128,15 @@ const Days = styled.div`
 
 const Buttons = styled.div`
     display: flex;
+
+    button {
+        width: 40px;
+        height: 35px;
+
+        background-color: #52B6FF;
+        color: white;
+        font-size: 27px;
+        border: none;
+        border-radius: 4.63636px;
+    }
 `;
