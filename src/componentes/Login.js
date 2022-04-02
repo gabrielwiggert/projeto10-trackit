@@ -26,7 +26,6 @@ export default function Login () {
         requisicao.then((response) => {
             setUserData([response.data.token, response.data.image]);
             console.log(response.data);
-            alert("deu certo!");
             navigate("/habitos");
         });
 

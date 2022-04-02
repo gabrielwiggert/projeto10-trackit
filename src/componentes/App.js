@@ -9,9 +9,10 @@ import UserContext from "./UserContext";
 function App() {
   const [userData, setUserData] = useState([null, null]);
   const [newHabit, setNewHabit] = useState(null);
+  const [days, setDays] = useState([]);
   
   return (
-    <UserContext.Provider value={{userData, setUserData, newHabit, setNewHabit}}>
+    <UserContext.Provider value={{userData, setUserData, newHabit, setNewHabit, days, setDays}}>
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Login />} />

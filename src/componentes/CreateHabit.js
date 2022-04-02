@@ -1,28 +1,29 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useContext } from "react";
+import axios from "axios";
 
 import UserContext from "./UserContext";
 
 export default function CreateHabit() {
     const { newHabit, setNewHabit } = useContext(UserContext);
-
+    const { days, setDays } = useContext(UserContext);
     const [habit, setHabit] = useState("");
-	//const [days, setDays] = useState("");
+    console.log(days);
+
     return (
             <Form2>
-                <form onSubmit={saveHabit(habit)}>
+                <form onSubmit={(event) => {saveHabit(event, habit, days)}}>
                     <input type="text" placeholder="nome do habito" value={habit} onChange={e => setHabit(e.target.value)} required />
                     <br />
-
                     <Days>
-                        <button>D</button>
-                        <button>S</button>
-                        <button>T</button>
-                        <button>Q</button>
-                        <button>Q</button>
-                        <button>S</button>
-                        <button>S</button>
+                        <button onClick={(e) => {trataDias(e,"1")}}>D</button>
+                        <button onClick={(e) => {trataDias(e,"2")}}>S</button>
+                        <button onClick={(e) => {trataDias(e,"3")}}>T</button>
+                        <button onClick={(e) => {trataDias(e,"4")}}>Q</button>
+                        <button onClick={(e) => {trataDias(e,"5")}}>Q</button>
+                        <button onClick={(e) => {trataDias(e,"6")}}>S</button>
+                        <button onClick={(e) => {trataDias(e,"7")}}>S</button>
                     </Days>
 
                     <Buttons>
@@ -32,9 +33,33 @@ export default function CreateHabit() {
                 </form>
             </Form2>
     );
-}
 
-function saveHabit(habit) {
+    function trataDias(e, dia) {
+        e.preventDefault();
+        if (!days.includes(dia)) { //FAZER IMPLEMENT DE TROCAR A COR DO BOTAO
+            setDays([...days, dia]);
+        }
+        if(days.includes(dia)) {
+            days.pop(dia);
+        }
+    }
+
+    function saveHabit(event, habit, days) {
+        event.preventDefault();
+        const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
+            name: habit,
+            days: days
+        });
+
+    requisicao.then((response) => {
+        console.log(response.data);
+    });
+
+    requisicao.catch((err) => {
+        console.log(err);
+        alert(err);
+    });
+    }
 }
 
 const Form2 = styled.div`
@@ -89,6 +114,7 @@ const Days = styled.div`
     button {
         width: 30px;
         height: 30px;
+        margin-right: 5px;
     }
 `;
 

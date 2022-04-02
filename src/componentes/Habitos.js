@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 
 import Header from "./Header";
+import Footer from "./Footer";
 import CreateHabit from "./CreateHabit";
 import UserContext from "./UserContext";
 
@@ -30,7 +31,6 @@ export default function Habitos() {
         const requisicao = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         requisicao.then((response) => {
             console.log(response.data);
-            alert("deu certo!");
         });
     
         requisicao.catch((err) => {
@@ -55,6 +55,7 @@ export default function Habitos() {
                 </AddHabit>
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </MeusHabitos>
+            <Footer />
         </FullScreen>
     );
 }
