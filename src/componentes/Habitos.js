@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import Habito from "./Habito";
 import CreateHabit from "./CreateHabit";
 import UserContext from "./UserContext";
 
@@ -76,7 +77,7 @@ export default function Habitos() {
     function renderHabits() {
         return(
             <>
-                {habits.map(habit => <Habito key={habit.id}><h1>{habit.name}</h1></Habito>)}
+                {habits.map(habit => <Habito key={habit.id} habitName={habit.name} habitDays={habit.days}/>)}
             </>
             );
     }
@@ -85,9 +86,6 @@ export default function Habitos() {
 const FullScreen = styled.div`
     height: 100vh;
     background-color: #DBDBDB;
-`;
-
-const Habito = styled.div`
 `;
 
 const SubHeader = styled.div`
