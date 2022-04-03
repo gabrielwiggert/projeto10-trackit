@@ -8,7 +8,9 @@ export default function Footer() {
             <Link to="/Hoje">
                 <h1>Hoje</h1>
             </Link>
-            <h1>Histórico</h1>
+            <Link to="/Historico">
+                <h1>Histórico</h1>
+            </Link>
         </Bottom>
     );
 }
