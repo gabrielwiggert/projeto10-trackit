@@ -6,25 +6,13 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Habito from "./Habito";
-import CreateHabit from "./CreateHabit";
 import UserContext from "./UserContext";
 
-function montarCreateHabit(newHabit) {
-    if (newHabit == "enabled") {
-        return (
-            <CreateHabit />
-        );
-    }
-    else {
-        return null;
-    }
-}
-
-export default function Habitos() {
-    const { userData, setUserData } = useContext(UserContext);
-    const { newHabit, setNewHabit } = useContext(UserContext);
+export default function Hoje() {
     const { habits, setHabits } = useContext(UserContext);
     const { temHabito, setTemHabito } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
+
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
@@ -55,12 +43,7 @@ export default function Habitos() {
                 <AddHabit>
                     <SubHeader>
                         <h1>Meus hábitos</h1>
-                        <button onClick={() => {setNewHabit("enabled")}}>
-                            +
-                        </button>
                     </SubHeader>
-                    
-                    {montarCreateHabit(newHabit)}
                 </AddHabit>
                 {temHabito ? renderHabits() : noHabitRender()}
             </MeusHabitos>
@@ -105,7 +88,6 @@ const SubHeader = styled.div`
 `;
 
 const AddHabit = styled.div`
-
 `;
 
 const MeusHabitos = styled.div`
