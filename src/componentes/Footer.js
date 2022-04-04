@@ -16,7 +16,7 @@ export default function Footer() {
             </Link>
             <Link to="/Hoje">
                 <Div style={{ width: 100, height: 100 }}>
-                    <CircularProgressbar value={progress} text={`Hoje`}  styles={buildStyles({pathColor: 'white', textColor: 'white' })} />
+                    <CircularProgressbar value={progress} text={`Hoje`}  styles={buildStyles({pathColor: 'white', textColor: 'white',   trailColor: '#52B6FF'})} />
                 </Div>
             </Link>
             <Link to="/Historico">
