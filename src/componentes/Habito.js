@@ -1,23 +1,55 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import axios from "axios";
+
+import UserContext from "./UserContext";
+import trash from "./../assets/imgs/trash.png";
 
 export default function Habito(props) {
-    const { habitName, habitDays } = props;
+    const { userData, setUserData } = useContext(UserContext);
+    const { habitName, habitDays, habitId } = props;
+
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData[0]}`
+        }
+    }
+
     return (
         <SavedHabit>
-            <h1>{habitName}</h1>
+            <Container>
+                <h1>{habitName}</h1>
 
-            <Days>
-                <button >D</button>
-                <button >S</button>
-                <button >T</button>
-                <button >Q</button>
-                <button >Q</button>
-                <button >S</button>
-                <button >S</button>
-            </Days>
+                <Days>
+                    <button >D</button>
+                    <button >S</button>
+                    <button >T</button>
+                    <button >Q</button>
+                    <button >Q</button>
+                    <button >S</button>
+                    <button >S</button>
+                </Days>
+            </Container>
+            <img src={trash} onClick={() => deleteHabit()}/>
         </SavedHabit>
     );
+
+    function deleteHabit() {
+        const requisicao = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, config);
+
+        requisicao.then((response) => {
+            console.log(response.data);
+        });
+
+        requisicao.catch((err) => {
+            console.log(err);
+            alert(err);
+        });
+    }
 }
+
+const Container = styled.div`
+`;
 
 const SavedHabit = styled.div`
     background-color: white;
@@ -26,10 +58,16 @@ const SavedHabit = styled.div`
     height: 91px;
     padding: 13px;
     margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
     
     h1 {
         color: #666666;
         margin-bottom: 8px;
+    }
+
+    img {
+        height: 13px;
     }
 `;
 

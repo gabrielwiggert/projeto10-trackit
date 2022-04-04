@@ -77,7 +77,7 @@ export default function Habitos() {
     function renderHabits() {
         return(
             <>
-                {habits.map(habit => <Habito key={habit.id} habitName={habit.name} habitDays={habit.days}/>)}
+                {habits.map(habit => <Habito key={habit.id} habitName={habit.name} habitDays={habit.days} habitId={habit.id}/>)}
             </>
             );
     }
