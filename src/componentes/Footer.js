@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
 import UserContext from "./UserContext";
 import 'react-circular-progressbar/dist/styles.css';
@@ -15,8 +15,8 @@ export default function Footer() {
                 <h1>Habitos</h1>
             </Link>
             <Link to="/Hoje">
-                <Div style={{ width: 50, height: 50 }}>
-                    <CircularProgressbar value={progress} text={`Hoje`} />
+                <Div style={{ width: 100, height: 100 }}>
+                    <CircularProgressbar value={progress} text={`Hoje`}  styles={buildStyles({pathColor: 'white', textColor: 'white' })} />
                 </Div>
             </Link>
             <Link to="/Historico">
@@ -27,6 +27,10 @@ export default function Footer() {
 }
 
 const Div = styled.div`
+    margin-bottom: 50px;
+    background-color: #52B6FF;
+    border-radius: 100px;
+    padding: 8px;
 `;
 
 const Bottom = styled.div`
