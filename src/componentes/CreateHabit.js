@@ -109,8 +109,8 @@ const Form2 = styled.div`
     form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
         margin-top: 15px;
     }
 
@@ -122,8 +122,9 @@ const Form2 = styled.div`
         border: 1px solid #D5D5D5;
         width: 80vw;
         height: 45px;
-        margin-bottom: 6px;
         font-family: 'Lexend Deca', sans-serif;
+        font-size: 20px;
+        padding-left: 11px;
     }
 
     input::placeholder {
@@ -135,6 +136,7 @@ const Form2 = styled.div`
 
 const Days = styled.div`
     display: flex;
+    justify-content: flex-start;
 `;
 
 const Day = styled.div`
@@ -160,13 +162,23 @@ const Buttons = styled.div`
     display: flex;
 
     button {
-        width: 40px;
+        margin-top: 5px;
+        width: 84px;
         height: 35px;
+        margin-right: 5px;
 
-        background-color: #52B6FF;
-        color: white;
-        font-size: 27px;
+        font-size: 16px;
         border: none;
         border-radius: 4.63636px;
+    }
+
+    button:last-child {
+        background-color: #52B6FF;
+        color: white;
+    }
+
+    button:first-child {
+        background-color: white;
+        color: #52B6FF;
     }
 `;
