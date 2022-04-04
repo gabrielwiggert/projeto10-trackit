@@ -8,6 +8,15 @@ import Footer from "./Footer";
 import HabitoDia from "./HabitoDia";
 import UserContext from "./UserContext";
 
+var dayjs = require('dayjs');
+//import dayjs from 'dayjs' // ES 2015
+dayjs().format();
+
+const day = dayjs().date();
+const month = dayjs().month();
+const weekDay = dayjs().day();
+const weekDays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+
 export default function Hoje() {
     const { habits, setHabits } = useContext(UserContext);
     const { temHabito, setTemHabito } = useContext(UserContext);
@@ -42,7 +51,7 @@ export default function Hoje() {
             <MeusHabitos>
                 <AddHabit>
                     <SubHeader>
-                        <h1>Meus hábitos</h1>
+                        <h1>{weekDays[weekDay]}, {day}/{month+1}</h1>
                     </SubHeader>
                 </AddHabit>
                 {temHabito ? renderHabits() : noHabitRender()}

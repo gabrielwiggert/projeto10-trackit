@@ -23,13 +23,13 @@ export default function CreateHabit() {
                     <input type="text" placeholder="nome do habito" value={habit} onChange={e => setHabit(e.target.value)} required />
                     <br />
                     <Days>
-                        <button onClick={(e) => {trataDias(e,"1")}}>D</button>
-                        <button onClick={(e) => {trataDias(e,"2")}}>S</button>
-                        <button onClick={(e) => {trataDias(e,"3")}}>T</button>
+                        <button onClick={(e) => {trataDias(e,"0")}}>D</button>
+                        <button onClick={(e) => {trataDias(e,"1")}}>S</button>
+                        <button onClick={(e) => {trataDias(e,"2")}}>T</button>
+                        <button onClick={(e) => {trataDias(e,"3")}}>Q</button>
                         <button onClick={(e) => {trataDias(e,"4")}}>Q</button>
-                        <button onClick={(e) => {trataDias(e,"5")}}>Q</button>
+                        <button onClick={(e) => {trataDias(e,"5")}}>S</button>
                         <button onClick={(e) => {trataDias(e,"6")}}>S</button>
-                        <button onClick={(e) => {trataDias(e,"7")}}>S</button>
                     </Days>
 
                     <Buttons>
