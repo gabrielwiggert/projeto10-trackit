@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 import UserContext from "./UserContext";
@@ -8,6 +9,7 @@ import trash from "./../assets/imgs/trash.png";
 export default function Habito(props) {
     const { userData, setUserData } = useContext(UserContext);
     const { habitName, habitDays, habitId } = props;
+    const { refresh, setRefresh } = useContext(UserContext);
 
     const config = {
         headers: {
@@ -38,7 +40,7 @@ export default function Habito(props) {
         const requisicao = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, config);
 
         requisicao.then((response) => {
-            console.log(response.data);
+            setRefresh("deleted");
         });
 
         requisicao.catch((err) => {

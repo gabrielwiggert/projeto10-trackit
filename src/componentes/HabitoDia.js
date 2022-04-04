@@ -8,6 +8,7 @@ import UserContext from "./UserContext";
 export default function HabitoDia(props) {
     const { habitName, done, habitId, currentSequence, highestSequence } = props;
     const { userData, setUserData } = useContext(UserContext);
+    const { refresh, setRefresh } = useContext(UserContext);
 
     const config = {
         headers: {
@@ -33,6 +34,8 @@ export default function HabitoDia(props) {
             //useEffect(() => {
                 const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, {}, config);
             
+                //requisicao.then(() => {setRefresh("check")});
+
                 requisicao.catch((err) => {
                     console.log(err);
                     alert(err);
@@ -42,6 +45,8 @@ export default function HabitoDia(props) {
         else {
             //useEffect(() => {
                 const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/uncheck`, {}, config);
+
+                //requisicao.then(() => {setRefresh("uncheck")});
 
                 requisicao.catch((err) => {
                     console.log(err);

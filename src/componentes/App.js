@@ -14,9 +14,10 @@ function App() {
   const [days, setDays] = useState([]);
   const [habits, setHabits] = useState(null);
   const [temHabito, setTemHabito] = useState(false);
+  const [refresh, setRefresh] = useState("");
   
   return (
-    <UserContext.Provider value={{userData, setUserData, newHabit, setNewHabit, days, setDays, habits, setHabits, temHabito, setTemHabito}}>
+    <UserContext.Provider value={{userData, setUserData, newHabit, setNewHabit, days, setDays, habits, setHabits, temHabito, setTemHabito, refresh, setRefresh}}>
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Login />} />

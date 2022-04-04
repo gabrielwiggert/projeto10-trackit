@@ -25,6 +25,7 @@ export default function Habitos() {
     const { newHabit, setNewHabit } = useContext(UserContext);
     const { habits, setHabits } = useContext(UserContext);
     const { temHabito, setTemHabito } = useContext(UserContext);
+    const { refresh, setRefresh } = useContext(UserContext);
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
