@@ -3,9 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
-
 import Header from "./Header";
 import Footer from "./Footer";
 import HabitoDia from "./HabitoDia";
@@ -24,6 +21,7 @@ export default function Hoje() {
     const { habits, setHabits } = useContext(UserContext);
     const { temHabito, setTemHabito } = useContext(UserContext);
     const { userData, setUserData } = useContext(UserContext);
+    const { progress, setProgress } = useContext(UserContext);
 
     let habitsDone = 0;
     let numHabits = 0;
@@ -71,13 +69,13 @@ export default function Hoje() {
                 </AddHabit>
                 {temHabito ? renderHabits() : noHabitRender()}
             </MeusHabitos>
-                <CircularProgressbar value={percentage} text={`${percentage}%`} />;
             <Footer />
         </FullScreen>
     );
 
     function doneRender() {
         percentage = (habitsDone / numHabits)*100;
+        setProgress(percentage);
         
         return(
             <Percentage enabled={habitsDone}>
