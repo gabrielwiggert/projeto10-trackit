@@ -58,15 +58,24 @@ export default function CreateHabit() {
 
     function trataDias(e, dia) {
         e.preventDefault();
-        if (!days.includes(dia)) { //FAZER IMPLEMENT DE TROCAR A COR DO BOTAO
+        if (!days.includes(dia)) {
             selected[dia] = true;
             setDays([...days, dia]);
         }
         else if (days.includes(dia)) {
             selected[dia] = false;
             let dias = days;
-            dias.pop(dia);
-            setDays(dias);
+
+            if (dias.length) {
+                dias.pop(dia);
+                setDays(...dias);
+                if (!dias.length) {
+                    setDays([]);
+                }
+            }
+            else {
+                setDays([]);
+            }
         }
     }
 
