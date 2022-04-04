@@ -15,9 +15,8 @@ export default function Footer() {
                 <h1>Habitos</h1>
             </Link>
             <Link to="/Hoje">
-                <h1>Hoje</h1>
                 <Div style={{ width: 50, height: 50 }}>
-                    <CircularProgressbar value={progress} text={`${progress}%`} />
+                    <CircularProgressbar value={progress} text={`Hoje`} />
                 </Div>
             </Link>
             <Link to="/Historico">
