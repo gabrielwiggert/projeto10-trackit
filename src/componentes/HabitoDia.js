@@ -18,10 +18,10 @@ export default function HabitoDia(props) {
 
     return (
         <SavedHabit>
-            <HabitData>
+            <HabitData highlight={done} highest={highestSequence} current={currentSequence}>
                 <h1>{habitName}</h1>
-                <h2>Sequência atual: {currentSequence} dias <br/>
-                    Seu recorde: {highestSequence} dias</h2>
+                <h2>Sequência atual:<span> {currentSequence} dias </span><br/>
+                    Seu recorde:<em> {highestSequence} dias</em></h2>
             </HabitData>
             <CheckMark enabled={done}>
                 <h3 onClick={() => {markDone()}}>✓</h3>
@@ -80,6 +80,12 @@ const SavedHabit = styled.div`
 `;
 
 const HabitData = styled.div`
+    span {
+        color: ${props => props.highlight ? "#8FC549" : "#666666"};
+    }
+    em {
+        color: ${props => (props.highest == props.current) ? "#8FC549" : "#666666"};
+    }
 `;
 
 const CheckMark = styled.div`
