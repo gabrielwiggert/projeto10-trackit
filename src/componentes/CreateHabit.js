@@ -5,6 +5,8 @@ import axios from "axios";
 
 import UserContext from "./UserContext";
 
+let selected = [false, false, false, false, false, false, false];
+
 export default function CreateHabit() {
     const { newHabit, setNewHabit } = useContext(UserContext);
     const { days, setDays } = useContext(UserContext);
@@ -16,7 +18,6 @@ export default function CreateHabit() {
         }
     }
     console.log(days);
-    let selected = [0, 0, 0, 0, 0, 0, 0];
 
     return (
             <Form2>
@@ -58,11 +59,11 @@ export default function CreateHabit() {
     function trataDias(e, dia) {
         e.preventDefault();
         if (!days.includes(dia)) { //FAZER IMPLEMENT DE TROCAR A COR DO BOTAO
-            selected[dia] = 1;
+            selected[dia] = true;
             setDays([...days, dia]);
         }
         else if (days.includes(dia)) {
-            selected[dia] = 0;
+            selected[dia] = false;
             let dias = days;
             dias.pop(dia);
             setDays(dias);
@@ -132,8 +133,7 @@ const Day = styled.div`
         width: 30px;
         height: 30px;
         margin-right: 5px;
-    }
-    button {
+
         border-width: 1px;
         border-color: #D4D4D4;
         background-color: ${props => props.enabled ? "#CFCFCF" : "white"};
