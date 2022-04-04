@@ -69,7 +69,7 @@ export default function Hoje() {
     function renderHabits() {
         return(
             <>
-                {habits.map(habit => <HabitoDia key={habit.id} habitName={habit.name} done={habit.done} habitId={habit.id}/>)}
+                {habits.map(habit => <HabitoDia key={habit.id} habitName={habit.name} done={habit.done} habitId={habit.id} currentSequence={habit.currentSequence} highestSequence={habit.highestSequence}/>)}
             </>
             );
     }

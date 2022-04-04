@@ -6,7 +6,7 @@ import axios from "axios";
 import UserContext from "./UserContext";
 
 export default function HabitoDia(props) {
-    const { habitName, done, habitId } = props;
+    const { habitName, done, habitId, currentSequence, highestSequence } = props;
     const { userData, setUserData } = useContext(UserContext);
 
     const config = {
@@ -19,8 +19,8 @@ export default function HabitoDia(props) {
         <SavedHabit>
             <HabitData>
                 <h1>{habitName}</h1>
-                <h2>Sequência atual:  dias <br/>
-                    Seu recorde:  dias</h2>
+                <h2>Sequência atual: {currentSequence} dias <br/>
+                    Seu recorde: {highestSequence} dias</h2>
             </HabitData>
             <CheckMark enabled={done}>
                 <h3 onClick={() => {markDone()}}>✓</h3>
@@ -29,14 +29,26 @@ export default function HabitoDia(props) {
     );
 
     function markDone() {
-        //useEffect(() => {
-            const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, config);
-        
-            requisicao.catch((err) => {
-                console.log(err);
-                alert(err);
-            });
-        //}, []);
+        if (!done) {
+            //useEffect(() => {
+                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, config);
+            
+                requisicao.catch((err) => {
+                    console.log(err);
+                    alert(err);
+                });
+            //}, []);
+        }
+        else {
+            //useEffect(() => {
+                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/uncheck`, config);
+
+                requisicao.catch((err) => {
+                    console.log(err);
+                    alert(err);
+                });
+            //}, []);
+        }
     }
 }
 
