@@ -31,7 +31,7 @@ export default function HabitoDia(props) {
     function markDone() {
         if (!done) {
             //useEffect(() => {
-                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, config);
+                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, {}, config);
             
                 requisicao.catch((err) => {
                     console.log(err);
@@ -41,7 +41,7 @@ export default function HabitoDia(props) {
         }
         else {
             //useEffect(() => {
-                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/uncheck`, config);
+                const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/uncheck`, {}, config);
 
                 requisicao.catch((err) => {
                     console.log(err);

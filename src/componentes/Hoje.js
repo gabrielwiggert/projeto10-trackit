@@ -53,6 +53,7 @@ export default function Hoje() {
                     <SubHeader>
                         <h1>{weekDays[weekDay]}, {day}/{month+1}</h1>
                     </SubHeader>
+                    <h2>Nenhum hábito concluído ainda</h2>
                 </AddHabit>
                 {temHabito ? renderHabits() : noHabitRender()}
             </MeusHabitos>
@@ -97,6 +98,11 @@ const SubHeader = styled.div`
 `;
 
 const AddHabit = styled.div`
+    h2 {
+        padding-top: 8px;
+        color: #BABABA;
+        font-size: 18px;
+    }
 `;
 
 const MeusHabitos = styled.div`
