@@ -23,13 +23,27 @@ export default function Habito(props) {
                 <h1>{habitName}</h1>
 
                 <Days>
-                    <button >D</button>
-                    <button >S</button>
-                    <button >T</button>
-                    <button >Q</button>
-                    <button >Q</button>
-                    <button >S</button>
-                    <button >S</button>
+                    <Day enabled={(habitDays.includes(0))}>
+                        <button >D</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(1))}>
+                        <button >S</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(2))}>
+                        <button >T</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(3))}>
+                        <button >Q</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(4))}>
+                        <button >Q</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(5))}>
+                        <button >S</button>
+                    </Day>
+                    <Day enabled={(habitDays.includes(6))}>
+                        <button >S</button>
+                    </Day>
                 </Days>
             </Container>
             <img src={trash} onClick={() => deleteHabit()}/>
@@ -51,6 +65,12 @@ export default function Habito(props) {
 }
 
 const Container = styled.div`
+`;
+
+const Day = styled.div`
+    button {
+        background-color: ${props => props.enabled ? "#CFCFCF" : "white"};
+    }
 `;
 
 const SavedHabit = styled.div`
@@ -75,6 +95,7 @@ const SavedHabit = styled.div`
 
 const Days = styled.div`
     display: flex;
+
     button {
         width: 30px;
         height: 30px;
@@ -82,7 +103,7 @@ const Days = styled.div`
 
         border-width: 1px;
         border-color: #D4D4D4;
-        background-color: white;
+
         border-radius: 5px;
         border: 1px solid #D5D5D5;
         margin-bottom: 6px;

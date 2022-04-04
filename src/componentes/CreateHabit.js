@@ -16,6 +16,7 @@ export default function CreateHabit() {
         }
     }
     console.log(days);
+    let selected = [0, 0, 0, 0, 0, 0, 0];
 
     return (
             <Form2>
@@ -23,13 +24,27 @@ export default function CreateHabit() {
                     <input type="text" placeholder="nome do habito" value={habit} onChange={e => setHabit(e.target.value)} required />
                     <br />
                     <Days>
-                        <button onClick={(e) => {trataDias(e,"0")}}>D</button>
-                        <button onClick={(e) => {trataDias(e,"1")}}>S</button>
-                        <button onClick={(e) => {trataDias(e,"2")}}>T</button>
-                        <button onClick={(e) => {trataDias(e,"3")}}>Q</button>
-                        <button onClick={(e) => {trataDias(e,"4")}}>Q</button>
-                        <button onClick={(e) => {trataDias(e,"5")}}>S</button>
-                        <button onClick={(e) => {trataDias(e,"6")}}>S</button>
+                        <Day enabled={selected[0]}>
+                            <button onClick={(e) => {trataDias(e,"0")}}>D</button>
+                        </Day>
+                        <Day enabled={selected[1]}>
+                            <button onClick={(e) => {trataDias(e,"1")}}>S</button>
+                        </Day>
+                        <Day enabled={selected[2]}>
+                            <button onClick={(e) => {trataDias(e,"2")}}>T</button>
+                        </Day>
+                        <Day enabled={selected[3]}>
+                            <button onClick={(e) => {trataDias(e,"3")}}>Q</button>
+                        </Day>
+                        <Day enabled={selected[4]}>
+                            <button onClick={(e) => {trataDias(e,"4")}}>Q</button>
+                        </Day>
+                        <Day enabled={selected[5]}>
+                            <button onClick={(e) => {trataDias(e,"5")}}>S</button>
+                        </Day>
+                        <Day enabled={selected[6]}>
+                            <button onClick={(e) => {trataDias(e,"6")}}>S</button>
+                        </Day>
                     </Days>
 
                     <Buttons>
@@ -43,10 +58,14 @@ export default function CreateHabit() {
     function trataDias(e, dia) {
         e.preventDefault();
         if (!days.includes(dia)) { //FAZER IMPLEMENT DE TROCAR A COR DO BOTAO
+            selected[dia] = 1;
             setDays([...days, dia]);
         }
-        if(days.includes(dia)) {
-            days.pop(dia);
+        else if (days.includes(dia)) {
+            selected[dia] = 0;
+            let dias = days;
+            dias.pop(dia);
+            setDays(dias);
         }
     }
 
@@ -102,11 +121,22 @@ const Form2 = styled.div`
         font-size: 20px;
         color: #DBDBDB;
     }
+`;
 
+const Days = styled.div`
+    display: flex;
+`;
+
+const Day = styled.div`
+    button {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
     button {
         border-width: 1px;
         border-color: #D4D4D4;
-        background-color: white;
+        background-color: ${props => props.enabled ? "#CFCFCF" : "white"};
         border-radius: 5px;
         border: 1px solid #D5D5D5;
         margin-bottom: 6px;
@@ -114,15 +144,6 @@ const Form2 = styled.div`
         color: #DBDBDB;
         font-size: 20px;
         text-align: center;
-    }
-`;
-
-const Days = styled.div`
-    display: flex;
-    button {
-        width: 30px;
-        height: 30px;
-        margin-right: 5px;
     }
 `;
 

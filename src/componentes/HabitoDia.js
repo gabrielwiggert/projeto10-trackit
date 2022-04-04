@@ -35,6 +35,7 @@ export default function HabitoDia(props) {
                 const requisicao = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}/check`, {}, config);
             
                 //requisicao.then(() => {setRefresh("check")});
+                //window.location.reload();
 
                 requisicao.catch((err) => {
                     console.log(err);
