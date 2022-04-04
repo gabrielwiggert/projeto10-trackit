@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import Habito from "./Habito";
+import HabitoDia from "./HabitoDia";
 import UserContext from "./UserContext";
 
 export default function Hoje() {
@@ -20,7 +20,7 @@ export default function Hoje() {
     }
 
     useEffect(() => {
-        const requisicao = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+        const requisicao = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
         requisicao.then((response) => {
             console.log(response.data);
 
@@ -60,7 +60,7 @@ export default function Hoje() {
     function renderHabits() {
         return(
             <>
-                {habits.map(habit => <Habito key={habit.id} habitName={habit.name} habitDays={habit.days}/>)}
+                {habits.map(habit => <HabitoDia key={habit.id} habitName={habit.name} done={habit.done} habitId={habit.id}/>)}
             </>
             );
     }
