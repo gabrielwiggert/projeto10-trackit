@@ -73,7 +73,9 @@ export default function Hoje() {
 
     function doneRender() {
         return(
-            <h2>{(habitsDone / numHabits)*100} % dos hábitos concluídos</h2>
+            <Percentage enabled={habitsDone}>
+                <h2>{(habitsDone / numHabits)*100} % dos hábitos concluídos</h2>
+            </Percentage>
         );
     }
 
@@ -103,6 +105,14 @@ const FullScreen = styled.div`
     background-color: #DBDBDB;
 `;
 
+const Percentage = styled.div`
+    h2 {
+        padding-top: 8px;
+        color: ${props => props.enabled ? "#8FC549" : "#BABABA"};
+        font-size: 18px;
+    }
+`;
+
 const SubHeader = styled.div`
     display: flex;
     justify-content: space-between;
@@ -120,11 +130,6 @@ const SubHeader = styled.div`
 `;
 
 const AddHabit = styled.div`
-    h2 {
-        padding-top: 8px;
-        color: #BABABA;
-        font-size: 18px;
-    }
 `;
 
 const MeusHabitos = styled.div`
