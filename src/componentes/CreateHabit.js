@@ -59,11 +59,11 @@ export default function CreateHabit() {
     function trataDias(e, dia) {
         e.preventDefault();
         if (!days.includes(dia)) {
-            selected[dia] = true;
+            selected[parseInt(dia)] = true;
             setDays([...days, dia]);
         }
         else if (days.includes(dia)) {
-            selected[dia] = false;
+            selected[parseInt(dia)] = false;
             let dias = days;
 
             if (dias.length) {
