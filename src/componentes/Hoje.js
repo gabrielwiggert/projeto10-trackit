@@ -22,6 +22,16 @@ export default function Hoje() {
     const { temHabito, setTemHabito } = useContext(UserContext);
     const { userData, setUserData } = useContext(UserContext);
 
+    let habitsDone = 0;
+    let numHabits = 0;
+    habits.forEach((habit) => {
+        if (habit.done) {
+            habitsDone++;
+            numHabits++;
+        }
+        else {numHabits++}
+    });
+
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
@@ -53,13 +63,25 @@ export default function Hoje() {
                     <SubHeader>
                         <h1>{weekDays[weekDay]}, {day}/{month+1}</h1>
                     </SubHeader>
-                    <h2>Nenhum hábito concluído ainda</h2>
+                    {habitsDone ? doneRender() : nothingDoneRender()}
                 </AddHabit>
                 {temHabito ? renderHabits() : noHabitRender()}
             </MeusHabitos>
             <Footer />
         </FullScreen>
     );
+
+    function doneRender() {
+        return(
+            <h2>{(habitsDone / numHabits)*100} % dos hábitos concluídos</h2>
+        );
+    }
+
+    function nothingDoneRender() {
+        return(
+            <h2>Nenhum hábito concluído ainda</h2>
+        );
+    }
 
     function noHabitRender() {
         return(
