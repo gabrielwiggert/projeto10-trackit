@@ -46,10 +46,10 @@ export default function Login () {
 
             <Form>
                 <form onSubmit={fazerLogin}>
-                    <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required />
-                    <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required />
-                    <input type="text" placeholder="nome" value={nome} onChange={e => setNome(e.target.value)} required />
-                    <input type="url" placeholder="foto" value={foto} onChange={e => setFoto(e.target.value)} required />
+                    <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required disabled={loading}/>
+                    <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required disabled={loading}/>
+                    <input type="text" placeholder="nome" value={nome} onChange={e => setNome(e.target.value)} required disabled={loading}/>
+                    <input type="url" placeholder="foto" value={foto} onChange={e => setFoto(e.target.value)} required disabled={loading}/>
                     {loading ? <button disabled><ThreeDots color="#fff" height={'1.8rem'} width={'100%'} /></button> : <button type="submit">Cadastrar</button>}
                 </form>
             </Form>

@@ -26,34 +26,34 @@ export default function CreateHabit() {
     return (
             <Form2>
                 <form onSubmit={(event) => {saveHabit(event, habit, days)}}>
-                    <input type="text" placeholder="nome do habito" value={habit} onChange={e => setHabit(e.target.value)} required />
+                    <input type="text" placeholder="nome do habito" value={habit} onChange={e => setHabit(e.target.value)} required disabled={loading}/>
                     <br />
                     <Days>
                         <Day enabled={selected[0]}>
-                            <button onClick={(e) => {trataDias(e,"0")}}>D</button>
+                            <button onClick={(e) => {trataDias(e,"0")}} disabled={loading}>D</button>
                         </Day>
                         <Day enabled={selected[1]}>
-                            <button onClick={(e) => {trataDias(e,"1")}}>S</button>
+                            <button onClick={(e) => {trataDias(e,"1")}} disabled={loading}>S</button>
                         </Day>
                         <Day enabled={selected[2]}>
-                            <button onClick={(e) => {trataDias(e,"2")}}>T</button>
+                            <button onClick={(e) => {trataDias(e,"2")}} disabled={loading}>T</button>
                         </Day>
                         <Day enabled={selected[3]}>
-                            <button onClick={(e) => {trataDias(e,"3")}}>Q</button>
+                            <button onClick={(e) => {trataDias(e,"3")}} disabled={loading}>Q</button>
                         </Day>
                         <Day enabled={selected[4]}>
-                            <button onClick={(e) => {trataDias(e,"4")}}>Q</button>
+                            <button onClick={(e) => {trataDias(e,"4")}} disabled={loading}>Q</button>
                         </Day>
                         <Day enabled={selected[5]}>
-                            <button onClick={(e) => {trataDias(e,"5")}}>S</button>
+                            <button onClick={(e) => {trataDias(e,"5")}} disabled={loading}>S</button>
                         </Day>
                         <Day enabled={selected[6]}>
-                            <button onClick={(e) => {trataDias(e,"6")}}>S</button>
+                            <button onClick={(e) => {trataDias(e,"6")}} disabled={loading}>S</button>
                         </Day>
                     </Days>
 
                     <Buttons>
-                        <button onClick={() => {setNewHabit(null)}}>Cancelar</button>
+                        <button onClick={() => {setNewHabit(null)}} disabled={loading}>Cancelar</button>
                         {loading ? <button disabled><ThreeDots color="#fff" height={'1.8rem'} width={'100%'} /></button> : <button type="submit">Salvar</button>}
                     </Buttons>
                 </form>
