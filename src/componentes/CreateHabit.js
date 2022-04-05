@@ -2,6 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useContext } from "react";
 import axios from "axios";
+import React from 'react'
+import { render } from 'react-dom'
+import { ThreeDots } from 'react-loader-spinner'
 
 import UserContext from "./UserContext";
 
@@ -12,6 +15,7 @@ export default function CreateHabit() {
     const { days, setDays } = useContext(UserContext);
     const { userData, setUserData } = useContext(UserContext);
     const [habit, setHabit] = useState("");
+    const [loading, setLoading] = useState(false);
     const config = {
         headers: {
             "Authorization": `Bearer ${userData[0]}`
@@ -50,7 +54,7 @@ export default function CreateHabit() {
 
                     <Buttons>
                         <button onClick={() => {setNewHabit(null)}}>Cancelar</button>
-                        <button type="submit">Salvar</button>
+                        {loading ? <button disabled><ThreeDots color="#fff" height={'1.8rem'} width={'100%'} /></button> : <button type="submit">Salvar</button>}
                     </Buttons>
                 </form>
             </Form2>
@@ -81,6 +85,9 @@ export default function CreateHabit() {
 
     function saveHabit(event, habit, days) {
         event.preventDefault();
+        
+        setLoading(true);
+
         const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
             name: habit,
             days: days
