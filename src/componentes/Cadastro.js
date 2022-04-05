@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import React from 'react'
+import { render } from 'react-dom'
+import { ThreeDots } from 'react-loader-spinner'
 
 import logotipo from "./../assets/imgs/logotipo.png";
 
@@ -11,9 +14,13 @@ export default function Login () {
 	const [senha, setSenha] = useState("");
     const [nome, setNome] = useState("");
     const [foto, setFoto] = useState("");
+    const [loading, setLoading] = useState(false);
 
 	function fazerLogin (event) {
 		event.preventDefault();
+
+        setLoading(true);
+
             const requisicao = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {
                 email: email,
                 name: nome,
@@ -43,7 +50,7 @@ export default function Login () {
                     <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required />
                     <input type="text" placeholder="nome" value={nome} onChange={e => setNome(e.target.value)} required />
                     <input type="url" placeholder="foto" value={foto} onChange={e => setFoto(e.target.value)} required />
-                    <button type="submit">Cadastrar</button>
+                    {loading ? <button disabled><ThreeDots color="#fff" height={'1.8rem'} width={'100%'} /></button> : <button type="submit">Cadastrar</button>}
                 </form>
             </Form>
 
