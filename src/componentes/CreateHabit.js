@@ -113,6 +113,20 @@ const Form2 = styled.div`
     margin-top: 20px;
     border-radius: 5px;
 
+    input:disabled{
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
+
+    button:disabled{
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
+
     form {
         display: flex;
         flex-direction: column;

@@ -110,6 +110,20 @@ const Form = styled.div`
         font-family: 'Lexend Deca', sans-serif;
     }
 
+    input:disabled{
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
+
+    button:disabled{
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
+
     input::placeholder {
         padding-left: 11px;
         font-size: 20px;

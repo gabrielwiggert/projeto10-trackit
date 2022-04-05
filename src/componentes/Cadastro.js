@@ -97,6 +97,19 @@ const Form = styled.div`
         align-items: center;
     }
 
+    input:disabled {
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
+
+    button:disabled {
+        background: grey;
+        color: darkgray;
+        opacity: 0.2;
+        cursor: progress;
+    }
 
     input {
         border-width: 1px;
