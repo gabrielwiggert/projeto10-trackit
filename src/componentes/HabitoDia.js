@@ -84,7 +84,7 @@ const HabitData = styled.div`
         color: ${props => props.highlight ? "#8FC549" : "#666666"};
     }
     em {
-        color: ${props => (props.highest == props.current) ? "#8FC549" : "#666666"};
+        color: ${props => ((props.highest == props.current) && (props.highest != 0)) ? "#8FC549" : "#666666"};
     }
 `;
 

@@ -79,7 +79,7 @@ export default function Hoje() {
         
         return(
             <Percentage enabled={habitsDone}>
-                <h2>{percentage} % dos hábitos concluídos</h2>
+                <h2>{percentage.toFixed(2)} % dos hábitos concluídos</h2>
             </Percentage>
         );
     }
