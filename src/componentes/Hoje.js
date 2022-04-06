@@ -22,6 +22,8 @@ export default function Hoje() {
     const { temHabito, setTemHabito } = useContext(UserContext);
     const { userData, setUserData } = useContext(UserContext);
     const { progress, setProgress } = useContext(UserContext);
+    const { refresh, setRefresh } = useContext(UserContext);
+    setRefresh(false);
 
     let habitsDone = 0;
     let numHabits = 0;

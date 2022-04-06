@@ -14,7 +14,7 @@ function App() {
   const [days, setDays] = useState([]);
   const [habits, setHabits] = useState(null);
   const [temHabito, setTemHabito] = useState(false);
-  const [refresh, setRefresh] = useState("");
+  const [refresh, setRefresh] = useState(false);
   const [progress, setProgress] = useState(0);
   
   return (

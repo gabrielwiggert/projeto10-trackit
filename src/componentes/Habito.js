@@ -17,7 +17,7 @@ export default function Habito(props) {
         }
     }
 
-    return (
+    return refresh ? (
         <SavedHabit>
             <Container>
                 <h1>{habitName}</h1>
@@ -48,13 +48,13 @@ export default function Habito(props) {
             </Container>
             <img src={trash} onClick={() => deleteHabit()}/>
         </SavedHabit>
-    );
+    ) : "Carregando";
 
     function deleteHabit() {
         const requisicao = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habitId}`, config);
 
         requisicao.then((response) => {
-            setRefresh("deleted");
+            setRefresh(true);
         });
 
         requisicao.catch((err) => {

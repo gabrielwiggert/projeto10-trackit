@@ -31,11 +31,12 @@ export default function Habitos() {
             "Authorization": `Bearer ${userData[0]}`
         }
     }
-
     useEffect(() => {
+        setRefresh(false);
         const requisicao = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         requisicao.then((response) => {
             console.log(response.data);
+            setRefresh(true);
 
             if ((response.data).length != 0) {
                 setHabits(response.data);
@@ -49,7 +50,7 @@ export default function Habitos() {
         });
     }, []);
 
-    return (
+    return refresh ? (
         <FullScreen>
             <Header />
             <MeusHabitos>
@@ -67,7 +68,7 @@ export default function Habitos() {
             </MeusHabitos>
             <Footer />
         </FullScreen>
-    );
+    ) : "Carregando";
 
     function noHabitRender() {
         return(
@@ -76,11 +77,11 @@ export default function Habitos() {
     }
 
     function renderHabits() {
-        return(
+        return refresh ? (
             <>
                 {habits.map(habit => <Habito key={habit.id} habitName={habit.name} habitDays={habit.days} habitId={habit.id}/>)}
             </>
-            );
+            ) : "Carregando";
     }
 }
 

@@ -9,14 +9,15 @@ import { ThreeDots } from 'react-loader-spinner'
 
 import logotipo from "./../assets/imgs/logotipo.png";
 
-export default function Login () {
+export default function Cadastro () {
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
     const [nome, setNome] = useState("");
     const [foto, setFoto] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-	function fazerLogin (event) {
+	function fazerCadastro (event) {
 		event.preventDefault();
 
         setLoading(true);
@@ -30,6 +31,7 @@ export default function Login () {
 
         requisicao.then((response) => {
             console.log(response.data);
+            navigate("/");
         });
 
         requisicao.catch((err) => {
@@ -45,7 +47,7 @@ export default function Login () {
             </Logo>
 
             <Form>
-                <form onSubmit={fazerLogin}>
+                <form onSubmit={fazerCadastro}>
                     <input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)} required disabled={loading}/>
                     <input type="password" placeholder="senha" value={senha} onChange={e => setSenha(e.target.value)} required disabled={loading}/>
                     <input type="text" placeholder="nome" value={nome} onChange={e => setNome(e.target.value)} required disabled={loading}/>
@@ -54,11 +56,11 @@ export default function Login () {
                 </form>
             </Form>
 
-            <Cadastro>
+            <LoginLink>
                 <Link to="/">
                     <h1>Já tem uma conta? Faça login!</h1>
                 </Link>
-            </Cadastro>
+            </LoginLink>
         </>
     );
 }
@@ -72,7 +74,7 @@ const Logo = styled.div`
     margin-bottom: 30px;
 `;
 
-const Cadastro = styled.div`
+const LoginLink = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
